@@ -4,9 +4,7 @@
   "license": "MIT",
   "author": "Messageraft",
   "repository": "messageraft/common",
-  "main": "dist/main/index.js",
-  "module": "dist/module/index.js",
-  "types": "dist/main/index.d.ts",
+  "main": "src/index.ts",
   "scripts": {
     "format": "prettier --write \"{src,test}/**/*.ts\""
   },
