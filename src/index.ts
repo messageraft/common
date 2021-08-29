@@ -1,5 +1,6 @@
-export class Core {
-  strategies: string[] = []
-
-  constructor(options: any) {}
+export namespace MessageRaft {
+  enum Strategies {
+    TWILIO = 'TWILIO',
+    SENDGRID = 'SENDGRID',
+  }
 }
