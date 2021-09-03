@@ -1,6 +1,2 @@
-export namespace MessageRaft {
-  enum Strategies {
-    TWILIO = 'TWILIO',
-    SENDGRID = 'SENDGRID',
-  }
-}
+export * from './interfaces'
+export * from './Provider'
