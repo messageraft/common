@@ -3,7 +3,8 @@ import {
   ProviderName,
   ProviderOptions,
   ProviderType,
-  SmsOptions,
+  BaseSmsOptions,
+  BaseDirectMessageOptions,
 } from './interfaces'
 
 export abstract class AbstractProvider {
@@ -18,5 +19,9 @@ export class EmailProvider extends AbstractProvider {
 }
 
 export class SmsProvider extends AbstractProvider {
-  async send(data: SmsOptions): Promise<any> {}
+  async send(data: BaseSmsOptions): Promise<any> {}
+}
+
+export class DirectMessageProvider extends AbstractProvider {
+  async send(data: BaseDirectMessageOptions): Promise<any> {}
 }

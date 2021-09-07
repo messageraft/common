@@ -3,14 +3,21 @@ export type AtLeastOne<T> = { [K in keyof T]: Pick<T, K> }[keyof T]
 export enum ProviderName {
   TWILIO = 'TWILIO',
   SENDGRID = 'SENDGRID',
+  SLACK = 'SLACK',
 }
 
 export enum ProviderType {
   EMAIL = 'EMAIL',
   SMS = 'SMS',
+  DIRECT_MESSAGE = 'DIRECT_MESSAGE',
 }
 
-export type ProviderClass = { new ({ apiKey }: ProviderConstructorOptions): InstantiatedProvider }
+export type ProviderConstructorOptions =
+  | SendgridConstructorOptions
+  | TwilioConstructorOptions
+  | SlackConstructorOptions
+
+export type ProviderClass = { new (...args: any[]): InstantiatedProvider }
 
 export type InstantiatedProvider = {
   name: ProviderName
@@ -24,8 +31,19 @@ export interface Provider {
   options: ProviderConstructorOptions
 }
 
-export interface ProviderConstructorOptions {
+export interface SlackConstructorOptions {
+  token: string
+  channel?: string
+}
+
+export interface SendgridConstructorOptions {
   apiKey: string
+}
+
+export interface TwilioConstructorOptions {
+  accountSid: string
+  authToken: string
+  from?: string
 }
 
 export type BaseEmailOptions = {
@@ -34,12 +52,17 @@ export type BaseEmailOptions = {
   subject: string
 }
 
-export interface SmsOptions {
+export interface BaseSmsOptions {
   to: string
-  message: string
+  from: string
+  body: string
 }
 
-export type ProviderOptions = BaseEmailOptions | SmsOptions
+export interface BaseDirectMessageOptions {
+  text: string
+}
+
+export type ProviderOptions = BaseEmailOptions | BaseSmsOptions | BaseDirectMessageOptions
 
 export type SendgridBody = {
   html: string
@@ -47,7 +70,13 @@ export type SendgridBody = {
 }
 
 export type SendgridEmailOptions = BaseEmailOptions & AtLeastOne<SendgridBody>
+export type TwilioSmsOptions = BaseSmsOptions
+export type SlackDirectMessageOptions = BaseDirectMessageOptions & {
+  channel?: string
+}
+export type SmsOptions = TwilioSmsOptions
 export type EmailOptions = SendgridEmailOptions
+export type DirectMessageOptions = SlackDirectMessageOptions
 
 /***
  * Logger definitions exported from nestjs
