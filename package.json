@@ -1,18 +1,37 @@
 {
   "name": "@messageraft/common",
   "version": "0.0.1",
-  "license": "MIT",
+  "description": "Typescript interfaces and helper files for Messageraft",
+  "keywords": [
+    "javascript",
+    "typescript",
+    "messageraft"
+  ],
+  "license": "Apache-2.0",
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "homepage": "https://messageraft.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/messageraft/common.git"
+  },
+  "bugs": "https://github.com/messageraft/common/issues",
+  "files": [
+    "dist",
+    "src"
+  ],
   "author": "Messageraft",
-  "repository": "messageraft/common",
   "main": "dist/main/index.js",
-  "module": "dist/module/index.js",
   "types": "dist/main/index.d.ts",
   "scripts": {
     "clean": "rimraf dist",
     "format": "prettier --write \"{src,test}/**/*.ts\"",
     "build": "run-s clean format build:*",
     "build:main": "tsc -p tsconfig.json",
-    "build:module": "tsc -p tsconfig.module.json",
     "tsc:watch": "tsc -w"
   },
   "husky": {
