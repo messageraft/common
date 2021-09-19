@@ -1,13 +1,13 @@
 import { ProviderName, ProviderType } from './interfaces'
 
-interface Provider {
+export interface ManifestProvider {
   name: ProviderName
   type: ProviderType
   packageName: string
   version: string
 }
 
-export const ProvidersManifest: Provider[] = [
+export const ProvidersManifest: ManifestProvider[] = [
   {
     name: ProviderName.SLACK,
     type: ProviderType.DIRECT_MESSAGE,
