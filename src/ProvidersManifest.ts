@@ -26,4 +26,10 @@ export const ProvidersManifest: ManifestProvider[] = [
     packageName: '@messageraft/sendgrid',
     version: '^0.0.x',
   },
+  {
+    name: ProviderName.MAILDEV,
+    type: ProviderType.EMAIL,
+    packageName: '@messageraft/maildev',
+    version: '^0.0.x',
+  },
 ]

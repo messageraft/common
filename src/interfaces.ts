@@ -4,6 +4,7 @@ export enum ProviderName {
   TWILIO = 'TWILIO',
   SENDGRID = 'SENDGRID',
   SLACK = 'SLACK',
+  MAILDEV = 'MAILDEV'
 }
 
 export enum ProviderType {
@@ -40,6 +41,10 @@ export interface SendgridConstructorOptions {
   apiKey: string
 }
 
+export interface MaildevConstructorOptions {
+  port: number
+}
+
 export interface TwilioConstructorOptions {
   accountSid: string
   authToken: string
@@ -69,7 +74,13 @@ export type SendgridBody = {
   text: string
 }
 
+export type MaildevBody = {
+  html: string
+  text: string
+}
+
 export type SendgridEmailOptions = BaseEmailOptions & AtLeastOne<SendgridBody>
+export type MaildevEmailOptions = BaseEmailOptions & AtLeastOne<MaildevBody>
 export type TwilioSmsOptions = BaseSmsOptions
 export type SlackDirectMessageOptions = BaseDirectMessageOptions & {
   channel?: string
